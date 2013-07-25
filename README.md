@@ -1,4 +1,4 @@
-notifier-server
+notifier
 ===============
 
-Android Notification Server for 4.3+ Devices
+Android Notifications to Growl app for Android 4.3+
