@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Notifier</string>
+    <string name="subscriptions_status_available">Available</string>
+    <string name="subscriptions_status_unregistered">Not subscribed</string>
+    <string name="subscriptions_status_registering">Subscribing…</string>
+    <string name="subscriptions_status_registered">Subscribed</string>
+    <string name="subscriptions_status_not_authorized">Bad password</string>
+    <string name="subscriptions_status_unknown_host">Currently unable to locate server</string>
 </resources>

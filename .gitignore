@@ -20,3 +20,5 @@ local.properties
 .project
 workspace.xml
 notifier.iml
+.DS_Store
+.svn/
