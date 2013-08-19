@@ -4,29 +4,27 @@ import java.util.HashMap;
 
 public class NotificationType {
 
-    private HashMap<String, String> headers = new HashMap<String, String>();
+    private HashMap<String, String> headers;
 
-    protected NotificationType() {}
+    protected NotificationType(HashMap<String, String> map) {
+        headers = new HashMap<String, String>(map);
+    }
 
     public static class Builder {
 
-        NotificationType notification;
-
-        public Builder() {
-            notification = new NotificationType();
-        }
+        private HashMap<String, String> headers = new HashMap<String, String>();
 
         public Builder withName(String name) {
-            notification.headers.put("Notification-Name", name);
+            headers.put("Notification-Name", name);
             return this;
         }
         public Builder withDisplayName(String displayName) {
-            notification.headers.put("Notification-Display-Name", displayName);
+            headers.put("Notification-Display-Name", displayName);
             return this;
         }
 
         public NotificationType build() {
-            return notification;
+            return new NotificationType(headers);
         }
 
     }
