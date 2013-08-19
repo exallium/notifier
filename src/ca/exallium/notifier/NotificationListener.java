@@ -16,6 +16,8 @@ import java.net.UnknownHostException;
 
 public class NotificationListener extends NotificationListenerService {
 
+    private final static String APP_NAME = "Notifier";
+
     String ip = "172.16.10.164";
 
     @Override
@@ -26,14 +28,23 @@ public class NotificationListener extends NotificationListenerService {
             @Override
             public void run() {
                 try {
-                    RegisterBuilder regBuilder = new RegisterBuilder("notasecret");
-                    NotifyBuilder notify = new NotifyBuilder("notasecret");
+
+                    String host = getApplicationContext()
+                            .getSharedPreferences(APP_NAME, MODE_PRIVATE)
+                            .getString("host", "172.16.10.164");
+
+                    String password = getApplicationContext()
+                            .getSharedPreferences(APP_NAME, MODE_PRIVATE)
+                            .getString("password", "notasecret");
+
+                    RegisterBuilder regBuilder = new RegisterBuilder(password);
+                    NotifyBuilder notify = new NotifyBuilder(password);
 
                     NotificationType.Builder builder = new NotificationType.Builder();
                     NotificationType type = builder.withName(sbn.getPackageName()).withDisplayName(sbn.getTag()).build();
-                    regBuilder.forApp("Notifier").withCount(1).withHost(ip).withNote(type).send();
+                    regBuilder.forApp(APP_NAME).withCount(1).withHost(ip).withNote(type).send();
 
-                    notify.forApp("Notifier").withNote(type)
+                    notify.forApp(APP_NAME).withNote(type)
                             .withTitle(sbn.getTag())
                             .withText(sbn.getNotification().tickerText.toString())
                             .withHost(ip).send();
